@@ -11,6 +11,7 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "data-filler": "git+https://github.com/artificial-life/data-filler.git",
+    "express": "^4.14.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.7.6",
     "nats": "^0.7.2"

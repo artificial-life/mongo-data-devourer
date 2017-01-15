@@ -9,15 +9,16 @@ const id = Math.random();
 // Request Streams
 nats.subscribe('request', {
 	'queue': 'job.workers'
-}, function(request, replyTo) {
+}, function (request, replyTo) {
 	Post.find({
 			group_id: request
 		})
 		.limit(10)
 
-		.lean()
+	.lean()
 		.sort('-timestamp')
 		.then(v => nats.publish(replyTo, v.map(i => i.timestamp)))
 		.then(response => console.log("response #" + request));
-
 });
+
+console.log("It's alive!");

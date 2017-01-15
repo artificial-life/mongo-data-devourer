@@ -2,5 +2,5 @@
 
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://192.168.1.49/test');
 mongoose.Promise = require('bluebird');

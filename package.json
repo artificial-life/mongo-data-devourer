@@ -1,11 +1,18 @@
 {
-    "name": "mongo-data-devourer",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC"
+  "name": "mongo-data-devourer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "data-filler": "git+https://github.com/artificial-life/data-filler.git",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.7.6",
+    "nats": "^0.7.2"
+  }
 }

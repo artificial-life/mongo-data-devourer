@@ -13,6 +13,7 @@
     "data-filler": "git+https://github.com/artificial-life/data-filler.git",
     "express": "^4.14.0",
     "lodash": "^4.17.4",
+    "minimist": "^1.2.0",
     "mongoose": "^4.7.6",
     "nats": "^0.7.2"
   }

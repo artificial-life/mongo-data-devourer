@@ -11,10 +11,12 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "data-filler": "git+https://github.com/artificial-life/data-filler.git",
+    "event-loop-monitor": "^0.2.0",
     "express": "^4.14.0",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
     "mongoose": "^4.7.6",
-    "nats": "^0.7.2"
+    "nats": "^0.7.2",
+    "performance-nodejs": "^1.0.5"
   }
 }

@@ -4,7 +4,7 @@ const cluster = require('cluster');
 
 // Code to run if we're in the master process
 if (cluster.isMaster) {
-	var cpuCount = require('os').cpus().length;
+	const cpuCount = require('os').cpus().length;
 
 	for (var i = 0; i < cpuCount; i += 1) {
 		cluster.fork();
@@ -18,6 +18,7 @@ if (cluster.isMaster) {
 		'url': nats_url
 	});
 
+	const PERF_INTERVAL = 15000;
 	const PORT = 8888;
 	const express = require('express');
 	const performance = require("performance-nodejs");

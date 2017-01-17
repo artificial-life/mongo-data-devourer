@@ -1,14 +1,11 @@
 'use strict';
 
 let WW = require('./worker.js');
+let MW = require('./mongo-worker.js');
 
-class None {
-	constructor() {
-
-	}
-};
-
-let x = new WW(None);
+let x = new WW(MW);
 
 
-WW.expose('request', 'getGroups');
+x.expose('request', 'getGroup', {
+  'queue': 'job.workers'
+});

@@ -8,16 +8,11 @@ class PGWorker {
 
   }
   getGroup(data) {
-    return Post.find({
-        group_id: data
-      })
-      .limit(10)
-      .lean()
-      .sort('-timestamp')
-      .then(v => "QQ");
+    return {};
     // _.map(v, 'timestamp').join(',')
   }
 }
 
+app.get('method', () => {})
 
 module.exports = PGWorker;

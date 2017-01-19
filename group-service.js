@@ -6,9 +6,10 @@ const nats_url = "nats://" + (argv.nats || "127.0.0.1:4222");
 
 const connect = require('./connect.js');
 const _ = require('lodash');
-const nats = require('nats').connect({
-	'url': nats_url
-});
+const nats = require('nats')
+	.connect({
+		'url': nats_url
+	});
 
 const Post = require('./post-schema.js');
 
@@ -25,7 +26,8 @@ nats.subscribe('request', {
 		.lean()
 		.sort('-timestamp')
 		.then(v => {
-			nats.publish(replyTo, _.map(v, 'timestamp').join(','));
+			nats.publish(replyTo, _.map(v, 'timestamp')
+				.join(','));
 		})
 		.then(response => console.log("response #" + request));
 });

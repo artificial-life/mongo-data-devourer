@@ -1,26 +1,22 @@
 "use strict";
 
 const cluster = require('cluster');
-var argv = require('minimist')(process.argv.slice(2));
-var is_cluster_mode = argv.mode != "single";
 
 // Code to run if we're in the master process
-if (is_cluster_mode && cluster.isMaster) {
-	const cpuCount = require('os')
-		.cpus()
-		.length;
+if (cluster.isMaster) {
+	const cpuCount = require('os').cpus().length;
 
 	for (var i = 0; i < cpuCount; i += 1) {
 		cluster.fork();
 	}
 } else {
+	var argv = require('minimist')(process.argv.slice(2));
 
 	const nats_url = "nats://" + (argv.nats || "127.0.0.1:4222");
 
-	const nats = require('nats')
-		.connect({
-			'url': nats_url
-		});
+	const nats = require('nats').connect({
+		'url': nats_url
+	});
 
 	const PERF_INTERVAL = 15000;
 	const PORT = 8888;

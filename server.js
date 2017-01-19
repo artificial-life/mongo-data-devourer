@@ -23,7 +23,7 @@ if (is_cluster_mode && cluster.isMaster) {
 		});
 
 	const PERF_INTERVAL = 15000;
-	const PORT = 8888;
+	const PORT = argv.port || 8888;
 	const express = require('express');
 	const performance = require("performance-nodejs");
 	const monitor = require("event-loop-monitor");
@@ -37,8 +37,15 @@ if (is_cluster_mode && cluster.isMaster) {
 	})
 
 	app.get('/group/:group_id', function (req, res) {
-		console.log(req.params);
 		nats.request('request', req.params.group_id,
+			function (response) {
+				res.send('Result:' + JSON.stringify(response));
+			});
+	})
+
+	app.post('/login', function (req, res) {
+		console.log(req.params);
+		nats.request('login', req.params,
 			function (response) {
 				res.send('Result:' + JSON.stringify(response));
 			});

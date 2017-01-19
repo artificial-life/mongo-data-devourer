@@ -23,7 +23,7 @@ if (is_cluster_mode && cluster.isMaster) {
 		});
 
 	const PERF_INTERVAL = 15000;
-	const PORT = argv.port || 8888;
+	const PORT = 8888;
 	const express = require('express');
 	const performance = require("performance-nodejs");
 	const monitor = require("event-loop-monitor");

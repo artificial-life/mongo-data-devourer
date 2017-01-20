@@ -4,7 +4,7 @@ const connect = require('./connect.js');
 const _ = require('lodash');
 const Post = require('./post-schema.js');
 const User = require('./user-schema.js');
-const auth = require("auth");
+const auth = require("./auth.js");
 
 class mongoWorker {
 	constructor() {

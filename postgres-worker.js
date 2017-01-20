@@ -2,7 +2,7 @@
 
 const pg = require('./post-connect.js');
 const _ = require('lodash');
-const auth = require("auth");
+const auth = require("./auth.js");
 
 class PGWorker {
 	constructor() {

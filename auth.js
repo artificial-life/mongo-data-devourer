@@ -3,7 +3,7 @@ module.exports = function (getUser) {
 		return getUser({
 				username: username
 			})
-			.then((users) = > {
+			.then((users) => {
 				let user = users[0];
 				if (!user) {
 					return Promise.reject(new Error('Incorrect username.'));

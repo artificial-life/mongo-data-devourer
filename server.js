@@ -27,8 +27,13 @@ if (is_cluster_mode && cluster.isMaster) {
 	const express = require('express');
 	const performance = require("performance-nodejs");
 	const monitor = require("event-loop-monitor");
+	const bodyParse = require("body-parser");
 
 	const app = express()
+	app.use(bodyParse.json())
+	app.use(bodyParse.urlencoded({
+			extended: true
+		}));
 
 	app.get('/', function (req, res) {
 		nats.request('request', function (response) {
@@ -44,8 +49,7 @@ if (is_cluster_mode && cluster.isMaster) {
 	})
 
 	app.post('/login', function (req, res) {
-		console.log(req.params);
-		nats.request('login', req.params,
+		nats.request('login', req.body,
 			function (response) {
 				res.send('Result:' + JSON.stringify(response));
 			});

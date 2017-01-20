@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.4.7",
+    "body-parser": "^1.16.0",
     "data-filler": "git+https://github.com/artificial-life/data-filler.git",
     "event-loop-monitor": "^0.2.0",
     "express": "^4.14.0",

@@ -1,30 +1,39 @@
 "use strict";
 
 const cluster = require('cluster');
+var argv = require('minimist')(process.argv.slice(2));
+var is_cluster_mode = argv.mode != "single";
 
 // Code to run if we're in the master process
-if (cluster.isMaster) {
-	const cpuCount = require('os').cpus().length;
+if (is_cluster_mode && cluster.isMaster) {
+	const cpuCount = require('os')
+		.cpus()
+		.length;
 
 	for (var i = 0; i < cpuCount; i += 1) {
 		cluster.fork();
 	}
 } else {
-	var argv = require('minimist')(process.argv.slice(2));
 
 	const nats_url = "nats://" + (argv.nats || "127.0.0.1:4222");
 
-	const nats = require('nats').connect({
-		'url': nats_url
-	});
+	const nats = require('nats')
+		.connect({
+			'url': nats_url
+		});
 
 	const PERF_INTERVAL = 15000;
-	const PORT = 8888;
+	const PORT = argv.port || 8888;
 	const express = require('express');
 	const performance = require("performance-nodejs");
 	const monitor = require("event-loop-monitor");
+	const bodyParse = require("body-parser");
 
 	const app = express()
+	app.use(bodyParse.json())
+	app.use(bodyParse.urlencoded({
+			extended: true
+		}));
 
 	app.get('/', function (req, res) {
 		nats.request('request', function (response) {
@@ -33,8 +42,14 @@ if (cluster.isMaster) {
 	})
 
 	app.get('/group/:group_id', function (req, res) {
-		console.log(req.params);
 		nats.request('request', req.params.group_id,
+			function (response) {
+				res.send('Result:' + JSON.stringify(response));
+			});
+	})
+
+	app.post('/login', function (req, res) {
+		nats.request('login', req.body,
 			function (response) {
 				res.send('Result:' + JSON.stringify(response));
 			});

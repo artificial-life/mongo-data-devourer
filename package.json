@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.4.7",
+    "body-parser": "^1.16.0",
     "data-filler": "git+https://github.com/artificial-life/data-filler.git",
     "event-loop-monitor": "^0.2.0",
     "express": "^4.14.0",
@@ -17,6 +18,7 @@
     "minimist": "^1.2.0",
     "mongoose": "^4.7.6",
     "nats": "^0.7.2",
+    "passport": "^0.3.2",
     "performance-nodejs": "^1.0.5"
   }
 }
